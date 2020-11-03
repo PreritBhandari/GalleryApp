@@ -13,7 +13,9 @@ import ImageList from "./ImageList";
 import TabBar from "./TabBar";
 
 export default class Gallery extends Component {
-  state = {};
+  state = {
+    favouriteIs: false,
+  };
 
   arr = [];
 
@@ -71,10 +73,15 @@ export default class Gallery extends Component {
       return e.key !== key;
     });
     AsyncStorage.setItem("imagelist", JSON.stringify(removeImage));
+
     this.setState({
       image: removeImage,
     });
     this.arr = removeImage;
+  };
+
+  favouriteImage = async (key) => {
+    alert("Image Added to Favourites");
   };
 
   render() {
@@ -95,6 +102,7 @@ export default class Gallery extends Component {
               arr={this.arr}
               item={item}
               removeImageHandler={this.removeImageHandler}
+              favouriteImage={this.favouriteImage}
             />
           )}
         />

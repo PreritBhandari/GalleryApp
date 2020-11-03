@@ -43,6 +43,6 @@ export default class TabBar extends Component {
 
 const styles = StyleSheet.create({
   topbar: {
-    backgroundColor: "teal",
+    backgroundColor: "#232b2b",
   },
 });

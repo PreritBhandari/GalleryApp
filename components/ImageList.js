@@ -31,7 +31,7 @@ export default class ImageList extends Component {
   };
 
   render() {
-    const { item, removeImageHandler } = this.props;
+    const { item, removeImageHandler, favouriteImage } = this.props;
 
     return (
       <TouchableOpacity style={styles.item}>
@@ -57,9 +57,46 @@ export default class ImageList extends Component {
               >
                 <Image
                   source={{ uri: this.state.imageName }}
-                  style={{ width: 400, height: 400 }}
+                  style={{
+                    width: 400,
+                    height: 400,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    position: "absolute",
+                  }}
                 ></Image>
-                <Button onPress={() => this.closeImage()} title="Close" />
+                <View
+                  style={{
+                    marginTop: "170%",
+                    backgroundColor: "#232b2b",
+                    width: "100%",
+                    height: "15%",
+                    justifyContent: "center",
+                  }}
+                >
+                  <TouchableOpacity
+                    style={{ marginLeft: "7%", position: "absolute" }}
+                    onPress={() => this.closeImage()}
+                  >
+                    <Text style={{ fontSize: 30, color: "#3175f8" }}>
+                      Close
+                    </Text>
+                  </TouchableOpacity>
+                  <IconAntDesign
+                    color="#3175f8"
+                    name="heart"
+                    size={30}
+                    style={{ marginLeft: "47%", position: "absolute" }}
+                    onPress={() => favouriteImage(item.name)}
+                  ></IconAntDesign>
+                  <IconAntDesign
+                    color="#3175f8"
+                    name="delete"
+                    size={30}
+                    style={{ marginLeft: "80%" }}
+                    onPress={() => removeImageHandler(item.key)}
+                  ></IconAntDesign>
+                </View>
               </View>
             </TouchableWithoutFeedback>
           </TouchableOpacity>
